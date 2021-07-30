@@ -7,7 +7,7 @@ export default () => {
   const Navigation = createStackNavigator();
   return (
     <NavigationContainer >
-      <Navigation.Navigator >
+      <Navigation.Navigator headerMode="none" >
         <Navigation.Screen name="Search" component={Search} />
       </Navigation.Navigator >
     </NavigationContainer >
