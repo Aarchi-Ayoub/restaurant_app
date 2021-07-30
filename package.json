@@ -11,8 +11,7 @@
   },
   "dependencies": {
     "react": "17.0.1",
-    "react-native": "0.64.2",
-    "react-native-config": "^1.4.3"
+    "react-native": "0.64.2"
   },
   "devDependencies": {
     "@babel/core": "^7.14.8",

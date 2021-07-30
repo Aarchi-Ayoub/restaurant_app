@@ -10,8 +10,7 @@ import com.facebook.react.ReactPackage;
 import com.facebook.soloader.SoLoader;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
-// adding for react-native-config module
-import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
+
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -29,8 +28,7 @@ public class MainApplication extends Application implements ReactApplication {
           // Packages that cannot be autolinked yet can be added manually here, for example:
           // packages.add(new MyReactNativePackage());
           
-          // adding for react-native-config module
-          packages.add(new ReactNativeConfigPackage());
+          
           return packages;
         }
 
