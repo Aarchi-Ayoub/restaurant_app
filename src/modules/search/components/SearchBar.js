@@ -1,11 +1,18 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
 import {Image, StyleSheet, TextInput, View} from 'react-native';
-const SearchBar = () => {
+const SearchBar = (props) => {
   return (
     <View style={styles.container}>
         <Image style={styles.icon} source={require('assets/images/search.png')}/>
-        <TextInput style={styles.searchText} placeholder="Search" />
+        <TextInput
+          value={props.value}
+          onChangeText={ newValue => props.changeValue(newValue)}
+          style={styles.searchText}
+          placeholder="Search"
+          autoCapitalize="none"
+          autoCorrect={false}
+        />
     </View>
   );
 };
