@@ -5,30 +5,13 @@ import SearchBar from '../components/SearchBar';
 import {styles} from './styles';
 import axios from '../api';
 import Toast from 'react-native-toast-message';
-import {useRef} from 'react';
+import useResults from '../hooks/useResults';
 export default () => {
   // Search text
   const [searchText, SetSearchText] = useState('');
-  // Search result
-  const [searchResult, SetSearchResult] = useState([]);
-  // Error message
-  const [error, SetError] = useState('');
-  // Search methode
-  const serach = async () => {
-    try {
-      const {data} = await axios.get('/search', {
-        params: {
-          limit: 50,
-          term: searchText,
-          location: 'san jose',
-        },
-      });
-      SetSearchResult(data.businesses);
-    } catch (err) {
-      SetError(err.message);
-    }
-  };
-  // Show error message
+  // Import from our custom hook
+  const [searchResult, error, serach] = useResults();
+  // Show the error message
   useEffect(() => {
     if (error !== '') {
       Toast.show({
@@ -40,19 +23,17 @@ export default () => {
         autoHide: true,
         topOffset: 30,
         bottomOffset: 40,
-        onShow: () => {},
-        onHide: () => {},
-        onPress: () => {},
       });
     }
   }, [error]);
+  console.log(searchResult);
 
   return (
     <View style={styles.container}>
       <SearchBar
         value={searchText}
         changeValue={newValue => SetSearchText(newValue)}
-        endEdit={() => serach()}
+        endEdit={() => serach(searchText)}
       />
       <Text>Search total : {searchResult.length}</Text>
     </View>
