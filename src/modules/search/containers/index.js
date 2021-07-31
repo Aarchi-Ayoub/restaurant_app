@@ -3,7 +3,6 @@ import React, {useState, useEffect} from 'react';
 import {Text, View} from 'react-native';
 import SearchBar from '../components/SearchBar';
 import {styles} from './styles';
-import axios from '../api';
 import Toast from 'react-native-toast-message';
 import useResults from '../hooks/useResults';
 export default () => {
@@ -26,8 +25,6 @@ export default () => {
       });
     }
   }, [error]);
-  console.log(searchResult);
-
   return (
     <View style={styles.container}>
       <SearchBar
