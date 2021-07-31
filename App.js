@@ -1,11 +1,13 @@
 import React, {Fragment} from 'react';
+import ToastMessage from './src/components/ToastMessage';
 import Router from './src/router';
-import 'react-native-gesture-handler';
 const App = () => {
   console.log('Test for debugger');
+
   return (
     <Fragment>
       <Router />
+      <ToastMessage />
     </Fragment>
   );
 };
