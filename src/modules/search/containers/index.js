@@ -30,19 +30,21 @@ export default () => {
   };
   // Show error message
   useEffect(() => {
-    Toast.show({
-      type: 'error',
-      position: 'bottom',
-      text1: 'Erreur',
-      text2: error,
-      visibilityTime: 4000,
-      autoHide: true,
-      topOffset: 30,
-      bottomOffset: 40,
-      onShow: () => {},
-      onHide: () => {},
-      onPress: () => {},
-    });
+    if (error !== '') {
+      Toast.show({
+        type: 'error',
+        position: 'bottom',
+        text1: 'Erreur',
+        text2: error,
+        visibilityTime: 4000,
+        autoHide: true,
+        topOffset: 30,
+        bottomOffset: 40,
+        onShow: () => {},
+        onHide: () => {},
+        onPress: () => {},
+      });
+    }
   }, [error]);
 
   return (
