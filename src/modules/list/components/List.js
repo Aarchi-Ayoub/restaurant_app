@@ -9,7 +9,7 @@ const List = ({data}) => {
     <FlatList
       horizontal={true}
       data={data}
-      keyExtractor={() => data.id}
+      keyExtractor={data => data.id}
       renderItem={({item}) => renderItem(item)}
     />
   );
