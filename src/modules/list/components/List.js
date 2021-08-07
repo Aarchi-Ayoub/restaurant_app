@@ -1,18 +1,49 @@
 import React from 'react';
-import {FlatList, Text} from 'react-native';
+import {FlatList, Text, TouchableOpacity} from 'react-native';
+import Details from '../../details/components/Details';
+import {useNavigation} from '@react-navigation/native';
 
 const List = ({data}) => {
-  const renderItem = data => {
-    return <Text>{data.name}</Text>;
+  // hook which gives access to navigation object
+  const nav = useNavigation();
+  console.log(data);
+  const render = data => {
+    if (data.length) {
+      return (
+        <FlatList
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          data={data}
+          keyExtractor={data => data.id}
+          renderItem={({item}) => <Details result={item} />}
+        />
+      );
+    } else {
+      return (
+        <Text
+          style={{
+            backgroundColor: '#FFB4BD',
+            fontSize: 20,
+            color: '#000',
+            padding: 5,
+            textAlign: 'center',
+            marginVertical: 10,
+            opacity: 0.7,
+          }}>
+          Aucun enregistrement n' est trouvé !
+        </Text>
+      );
+    }
   };
-  return (
-    <FlatList
-      horizontal={true}
-      data={data}
-      keyExtractor={data => data.id}
-      renderItem={({item}) => renderItem(item)}
-    />
-  );
+  return render(data);
+  // <FlatList
+  //   horizontal={true}
+  //   showsHorizontalScrollIndicator={false}
+  //   data={data}
+  //   keyExtractor={data => data.id}
+  //   renderItem={({item}) => <Details result={item} />}
+  // />
+  // <Text>{JSON.stringify(data)}</Text>
 };
 
 export default List;

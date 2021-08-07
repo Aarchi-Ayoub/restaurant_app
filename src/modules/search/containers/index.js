@@ -4,12 +4,23 @@ import {Text, View} from 'react-native';
 import SearchBar from '../components/SearchBar';
 import {styles} from './styles';
 import Toast from 'react-native-toast-message';
-import useResults from '../hooks/useResults';
+
+import {useDispatch} from 'react-redux';
+import {search} from '../actions';
+import {useSelector} from 'react-redux';
 export default () => {
+  // Actions methode access
+  const dispatch = useDispatch();
+
   // Search text
   const [searchText, SetSearchText] = useState('');
-  // Import from our custom hook
-  const [searchResult, error, serach] = useResults();
+
+  // Error message
+  const [error, SetError] = useState('');
+
+  // Read from store
+  const count = useSelector(state => state.search.items);
+
   // Show the error message
   useEffect(() => {
     if (error !== '') {
@@ -25,6 +36,15 @@ export default () => {
       });
     }
   }, [error]);
+
+  /* Search methode */
+  const serach = async text => {
+    const err = await dispatch(search(text));
+    if (err) {
+      SetError(err);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <SearchBar
@@ -32,7 +52,7 @@ export default () => {
         changeValue={newValue => SetSearchText(newValue)}
         endEdit={() => serach(searchText)}
       />
-      <Text>Search total : {searchResult.length}</Text>
+      <Text style={styles.count}>Search total : {count.length}</Text>
     </View>
   );
 };
