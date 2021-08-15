@@ -1,12 +1,10 @@
 import React from 'react';
-import {FlatList, Text, TouchableOpacity} from 'react-native';
+import {FlatList, Text} from 'react-native';
 import Details from '../../details/components/Details';
-import {useNavigation} from '@react-navigation/native';
 
 const List = ({data}) => {
-  // hook which gives access to navigation object
-  const nav = useNavigation();
-  console.log(data);
+  // console.log(data);
+
   const render = data => {
     if (data.length) {
       return (
